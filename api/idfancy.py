@@ -1,5 +1,6 @@
 import re
 import random
+from json import JSONEncoder
 
 
 class Noun:
