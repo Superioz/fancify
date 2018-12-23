@@ -18,3 +18,22 @@ If you want to setup your own RESTful server with this little application:
 - Execute `docker build -t idfancy .` in the main directory of this project.
   - or use `docker pull superioz/idfancy` :stuck_out_tongue_winking_eye:
 - Execute `docker run --name idfancy -p 1337:1337 idfancy` and enjoy!
+
+Protocol :swimmer:
+--------
+**Content-Type**: `application/json`
+
+**POST** Request Body:
+```json
+[
+  "foobar12",
+  "foobar34",
+  "foobar56"
+]
+```
+
+**Response**:
+```json
+{"data":{"foobar12":"die ephemere Kalbsnuss","foobar34":"das deviante Abspannen","foobar56":"der fertige Puppenwagen"},"status":"ok"}
+```
+
