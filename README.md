@@ -11,3 +11,7 @@ Usage
 - Enjoy the result!
 
 You can pass as many ids as you want. Simply add them to the script arguments (`yourId1 yourId2 yourId3`).
+
+REST Server
+-----------
+If you want to setup your own RESTful server with this little application, just use the `Dockerfile` and execute `docker build -t idfancy .` and afterwards `docker run --name idfancy -p 1337:1337 idfancy`
