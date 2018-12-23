@@ -37,26 +37,26 @@ Protocol :swimmer:
 **POST** Request Body:
 ```json
 [
-  "foobar12",
-  "foobar34",
-  "foobar56"
+  "oRRUcuvc",
+  "UTlsBvC6",
+  "7mbRvBOY"
 ]
 ```
 
 **Response**:
 ```json
 {
-   "data":{
-      "foobar12":"die ephemere Kalbsnuss",
-      "foobar34":"das deviante Abspannen",
-      "foobar56":"der fertige Puppenwagen"
-   },
-   "status":"ok"
+    "data": {
+        "7mbRvBOY": "der vorsintflutliche Verdauungstrakt",
+        "UTlsBvC6": "die kastenförmige Tierhaltung",
+        "oRRUcuvc": "die abkömmliche Rauferei"
+    },
+    "status": "ok"
 }
 ```
 
 The respective **curl** command would be:
 ```
-curl -X POST -H "Content-Type: application/json" -d ["foobar12","foobar34","foobar56"] localhost:1337
+curl -X POST -H "Content-Type: application/json" -d ["oRRUcuvc","UTlsBvC6","7mbRvBOY"] localhost:1337
 ```
 
