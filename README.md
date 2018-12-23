@@ -34,6 +34,13 @@ Protocol :swimmer:
 
 **Response**:
 ```json
-{"data":{"foobar12":"die ephemere Kalbsnuss","foobar34":"das deviante Abspannen","foobar56":"der fertige Puppenwagen"},"status":"ok"}
+{
+   "data":{
+      "foobar12":"die ephemere Kalbsnuss",
+      "foobar34":"das deviante Abspannen",
+      "foobar56":"der fertige Puppenwagen"
+   },
+   "status":"ok"
+}
 ```
 
