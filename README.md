@@ -65,6 +65,52 @@ curl -X POST -H "Content-Type: application/json" -d ["oRRUcuvc","UTlsBvC6","7mbR
 
 Keep in mind that the maximum of requests are 1000 **per hour** and 24000 **per day**.
 
+Java Example :coffee:
+------------
+You could use the command line for requests forevery, but using a program might be easier.
+Here is an example for **Java** users:
+``` JAVA
+try {
+  String gameId = "Xhg1bgsb";
+
+  URL urlObject = new URL("http://idfancy.freggy.de/");
+  HttpURLConnection con = (HttpURLConnection) urlObject.openConnection();
+
+  // set request type to POST
+  con.setRequestMethod("POST");
+
+  // other user-agents might not work .. therefore: custom
+  con.setRequestProperty("User-Agent", "dank");
+
+  // set the content type to json, as we want to pass a json string
+  con.setRequestProperty("Content-Type", "application/json");
+
+  // Write into the output-stream of the connection
+  con.setDoOutput(true);
+  DataOutputStream output = new DataOutputStream(con.getOutputStream());
+  output.write(("[\"" + gameId + "\"]").getBytes());
+  output.flush();
+  output.close();
+
+  BufferedReader input = new BufferedReader(new InputStreamReader(con.getInputStream()));
+  String inputLine;
+  StringBuilder response = new StringBuilder();
+  while ((inputLine = input.readLine()) != null) {
+    response.append(inputLine);
+  }
+  input.close();
+
+  // result of the request
+  // prints: {"data":{"Xhg1bgsb":"die dreitürige Berechnung"},"status":"ok"}
+  System.out.println(response.toString());
+} catch (IOException ex) {
+  // something went wrong, either a 400+ error or some
+  // other connection issue
+  ex.printStackTrace();
+}
+```
+As sending POST requests in other languages like **Go** or **Python** is much easier, I'm not gonna give an example for them.
+
 Contribution :raised_hands:
 ------------
 Feel free to create **pull requests** or **issues**.  
