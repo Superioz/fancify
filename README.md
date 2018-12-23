@@ -3,6 +3,9 @@ idfancy :sweat_drops:
 Simple python script to generate a random German name from a gameid.  
 Example: `GthM7pA3` would result in `das visuelle Allergen`, pretty funny, huh?
 
+Current size of adjectives: **5560**  
+Current size of nouns: **48994**
+
 Usage :pray:
 -----
 - Install [python 3.7+](https://www.python.org/downloads/release/python-370/) and set up the environment variables accordingly. Otherwise you won't be able to use the `python` command.
@@ -60,3 +63,9 @@ The respective **curl** command would be:
 curl -X POST -H "Content-Type: application/json" -d ["oRRUcuvc","UTlsBvC6","7mbRvBOY"] localhost:1337
 ```
 
+Keep in mind that the maximum of requests are 1000 **per hour** and 24000 **per day**.
+
+Contribution :raised_hands:
+------------
+Feel free to create **pull requests** or **issues**.  
+Doesn't matter if you just want to add new nouns/adjectives or if you have found a bug.  
