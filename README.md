@@ -21,12 +21,12 @@ docker pull superioz/idfancy
 ```
 Or inside the main project directory:
 ```
-docker build -t idfancy .
+docker build -t superioz/idfancy .
 ```
 
 After the image has been successfully installed you can use:
 ```
-docker run --name idfancy -p 1337:1337 idfancy
+docker run --name idfancy -p 1337:1337 superioz/idfancy
 ```
 to start the docker container. Now `localhost:1337/ping` should give a response.
 
