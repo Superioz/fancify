@@ -46,7 +46,11 @@ function prettyPrint(ugly) {
 // as a readable format
 function getCurrentTime() {
     var currentdate = new Date();
-    return currentdate.getHours() + ":"
-        + currentdate.getMinutes() + ":"
-        + currentdate.getSeconds()
+    var currentHours = currentdate.getHours();
+    var currentMin = currentdate.getMinutes();
+    var currentSeconds = currentdate.getSeconds();
+
+    return (currentHours < 10 ? "0" + currentHours : currentHours) + ":"
+        + (currentMin < 10 ? "0" + currentMin : currentMin) + ":"
+        + (currentSeconds < 10 ? "0" + currentSeconds : currentSeconds)
 }
