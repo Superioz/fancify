@@ -55,3 +55,8 @@ Protocol :swimmer:
 }
 ```
 
+The respective **curl** command would be:
+```
+curl -X POST -H "Content-Type: application/json" -d ["foobar12","foobar34","foobar56"] localhost:1337
+```
+
