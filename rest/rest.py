@@ -7,6 +7,7 @@ from api import idfancy
 
 # initialize Flask
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 limiter = Limiter(
     app,
     key_func=get_remote_address,
@@ -33,6 +34,11 @@ for s in nouns_json:
 sorted(nouns)
 
 
+@app.errorhandler(400)
+def method_not_allowed(e):
+    return jsonify(status="bruder mach nicht diese", error=str(e))
+
+
 @app.errorhandler(405)
 def method_not_allowed(_):
     return jsonify(status="ja nu komm")
@@ -45,7 +51,7 @@ def file_not_found(_):
 
 @app.errorhandler(500)
 def internal_error(_):
-    return jsonify(status="ich hab rücken, ich hab kreislauf")
+    return jsonify(status="isch hab ruecken, isch hab kreislauf")
 
 
 @app.route("/ping")
@@ -56,10 +62,13 @@ def ping():
 
 @app.route("/", methods=["POST"])
 def fancify():
-    data = request.args
+    data = request.get_json()
+    if data is None:
+        return jsonify(status="bruder mach nicht diese"), 400
+
     keys = []
     for _id in data:
-        keys.append(_id)
+        keys.append(str(_id))
 
     # process given input and return the processed ids
     # or empty if no valid id found
