@@ -35,7 +35,7 @@ to start the docker container. Now `localhost:1337/ping` should give a response.
 
 We have a simple UI at `localhost:1337` for user input as well:  
   
-![UI](/.github/images/web_ui.png "UI")
+![UI](/.github/assets/web_ui.png "UI")
 
 Protocol :swimmer:
 --------
