@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameId fancifier</title>
+
+    <!-- Roboto font for the text -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- .css from Skeleton framework-->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/skeleton.css') }}">
+
+    <!-- Own JavaScript file for helper methods -->
+    <script src="{{ url_for('static',filename='js/app.js') }}"></script>
+</head>
+
+<body style="background-color: #ffffff">
+<div class="container">
+    <p></p>
+    <h1>ID Fancifier</h1>
+    <form id="form">
+        <input type="text" id="ids" size="40" width="500" autofocus placeholder="oRRUcuvc,UTlsBvC6">
+        <input class="button-primary" type="button" onclick="doPostRequest()" value="Send"/>
+    </form>
+
+    <h4 id="last-result">Last Result:</h4>
+    <pre><code id="result">Hier könnte Ihre Werbung stehen</code></pre>
+</div>
+</body>
+</html>

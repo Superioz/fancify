@@ -1,6 +1,6 @@
 import pkg_resources
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from api import idfancy
@@ -35,8 +35,8 @@ sorted(nouns)
 
 
 @app.errorhandler(400)
-def bad_request(e):
-    return jsonify(status="bruder mach nicht diese", error=str(e), code=400)
+def bad_request(_):
+    return jsonify(status="bruder mach nicht diese", code=400)
 
 
 @app.errorhandler(405)
@@ -68,8 +68,8 @@ def ping():
 @app.route("/", methods=["POST"])
 def fancify():
     data = request.get_json()
-    if data is None:
-        return jsonify(status="bruder mach nicht diese"), 400
+    if data is None or isinstance(data, int):
+        return jsonify(status="bruder mach nicht diese", code=400)
 
     keys = []
     for _id in data:
@@ -83,6 +83,11 @@ def fancify():
         results[_id] = str(words[_id])
 
     return jsonify(status="ok", data=results), 200
+
+
+@app.route("/")
+def test():
+    return render_template("index.html")
 
 
 # start the web service
