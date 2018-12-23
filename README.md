@@ -14,10 +14,21 @@ You can pass as many ids as you want. Simply add them to the script arguments (`
 
 REST Server :joy:
 -----------
-If you want to setup your own RESTful server with this little application:
-- Execute `docker build -t idfancy .` in the main directory of this project.
-  - or use `docker pull superioz/idfancy` :stuck_out_tongue_winking_eye:
-- Execute `docker run --name idfancy -p 1337:1337 idfancy` and enjoy!
+If you want to setup your own RESTful server with this little application, you have to fetch the docker image first.
+Either use:
+```
+docker pull superioz/idfancy
+```
+Or inside the main project directory:
+```
+docker build -t idfancy .
+```
+
+After the image has been successfully installed you can use:
+```
+docker run --name idfancy -p 1337:1337 idfancy
+```
+to start the docker container. Now `localhost:1337/ping` should give a response.
 
 Protocol :swimmer:
 --------
