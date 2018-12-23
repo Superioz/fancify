@@ -35,23 +35,28 @@ sorted(nouns)
 
 
 @app.errorhandler(400)
-def method_not_allowed(e):
-    return jsonify(status="bruder mach nicht diese", error=str(e))
+def bad_request(e):
+    return jsonify(status="bruder mach nicht diese", error=str(e), code=400)
 
 
 @app.errorhandler(405)
 def method_not_allowed(_):
-    return jsonify(status="ja nu komm")
+    return jsonify(status="ja nu komm", code=405)
 
 
 @app.errorhandler(404)
 def file_not_found(_):
-    return jsonify(status="freunde, bitte")
+    return jsonify(status="freunde, bitte", code=404)
+
+
+@app.errorhandler(429)
+def too_many_requests(_):
+    return jsonify(status="freunde, beruhigt euch", code=429)
 
 
 @app.errorhandler(500)
 def internal_error(_):
-    return jsonify(status="isch hab ruecken, isch hab kreislauf")
+    return jsonify(status="isch hab ruecken, isch hab kreislauf", code=500)
 
 
 @app.route("/ping")
