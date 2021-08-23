@@ -1,0 +1,4 @@
+sources:
+  - type: file
+    nounsFile: /etc/fancify/dictionary/nouns.json
+    adjectivesFile: /etc/fancify/dictionary/adjectives.json
