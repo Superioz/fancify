@@ -95,8 +95,8 @@ def handle_get_paged_list(list):
         return jsonify(status="size less or equal to zero is not allowed"), 400
 
     paged_list = [list[i:i+size] for i in range(0, len(nouns), size)]
-    if page >= len(paged_list):
-        return jsonify(status="this page does not exist"), 400
+    if page > len(paged_list):
+        return jsonify(status=f"this page does not exist ({page} >= {len(paged_list)})"), 400
     return jsonify(paged_list[page-1]), 200
 
 
@@ -126,6 +126,8 @@ for source in sources:
     for n in source.get_nouns():
         nouns.append(n.__dict__)
     adjectives.extend(source.get_adjectives())
+
+print(f"Found {len(nouns)} nouns and {len(adjectives)} adjectives.")
 
 app = Flask("fancify-dictionary")
 app.config['JSON_AS_ASCII'] = False
