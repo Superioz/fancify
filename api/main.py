@@ -83,7 +83,7 @@ def fancify():
     if content == None:
         return jsonify(status="body needs to contain field 'content'"), 400
 
-    return jsonify(result=fancify_content(content, [], [])), 200
+    return jsonify(result=fancify_content(content, nouns, adjectives)), 200
 
 
 if __name__ == "__main__":
