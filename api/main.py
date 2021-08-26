@@ -4,6 +4,7 @@ from flask_limiter.util import get_remote_address
 from os import getenv
 import sys
 import requests
+import random
 
 
 class Noun:
@@ -19,7 +20,11 @@ dictionary_address = getenv(
 
 
 def fancify_content(content, nouns, adjectives):
-    return content
+    random.seed(content)
+    noun = nouns[random.randint(0, len(nouns) - 1)]
+    adjective = adjectives[random.randint(0, len(adjectives) - 1)]
+
+    return noun.article + " " + adjective + " " + noun.noun
 
 
 def fetch_adjectives():
@@ -32,7 +37,7 @@ def fetch_adjectives():
     except Exception as e:
         print("Could not connect to dictionary service:", e)
         return None
-    return r.text
+    return r.json()
 
 
 def fetch_nouns():
@@ -56,13 +61,16 @@ def fetch_nouns():
 # save them into a cache that gets cleared every x minutes
 print("Load lexicon into cache ...")
 adjectives = fetch_adjectives()
-print(f"Loaded {len(adjectives)} adjectives")
-nouns = fetch_nouns()
-print(f"Loaded {len(nouns)} nouns")
-
-if adjectives == None or nouns == None:
-    print("Could not find anything for the lexicon, exiting ..")
+if adjectives == None:
+    print("Could not load any adjectives, exiting ..")
     exit(1)
+print(f"Loaded {len(adjectives)} adjectives")
+
+nouns = fetch_nouns()
+if nouns == None:
+    print("Could not load any nouns, exiting ..")
+    exit(1)
+print(f"Loaded {len(nouns)} nouns")
 
 app = Flask("fancify-api")
 app.config['JSON_AS_ASCII'] = False
@@ -79,9 +87,9 @@ def fancify():
     if data == None:
         return jsonify(status="the body needs to be json encoded"), 400
 
-    content = data["content"]
-    if content == None:
+    if "content" not in data:
         return jsonify(status="body needs to contain field 'content'"), 400
+    content = data["content"]
 
     return jsonify(result=fancify_content(content, nouns, adjectives)), 200
 
