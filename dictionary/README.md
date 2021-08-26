@@ -15,3 +15,8 @@ Wow.
 
 - `GET /nouns` with parameters `size` and `page`
 - `GET /adjectives` with parameters just like nouns has
+
+# Environment Variables
+
+- `SERVER_HOST`: Host this application will bind to.
+- `SERVER_PORT`: Port this application will bind to.

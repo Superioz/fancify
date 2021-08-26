@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  dictionary:
+    image: fancify-dictionary:latest
+    build:
+      context: ./dictionary
+      dockerfile: ./dictionary/Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - "./dictionary/default:/etc/fancify/dictionary"
+    environment:
+      SERVER_HOST: 0.0.0.0
+      SERVER_PORT: 8080
+  api:
+    image: fancify-api:latest
+    build:
+      context: ./api
+      dockerfile: ./api/Dockerfile
+    ports:
+      - 8090:8090
+    environment:
+      SERVER_HOST: 0.0.0.0
+      SERVER_PORT: 8090
+      FANCIFY_DICTIONARY_ADDRESS: http://dictionary:8080
+    depends_on:
+      - dictionary

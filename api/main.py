@@ -15,16 +15,22 @@ class Noun:
         self.article = article
 
 
-dictionary_address = getenv(
-    "FANCIFY_DICTIONARY_ADDRESS", default="http://localhost:8080")
-
-
 def fancify_content(content, nouns, adjectives):
+    """
+    Method to hash the content for a random number generator
+    seed and get the respective noun and adjective.
+
+    Returns a string like `der alte Vater`
+    """
     random.seed(content)
     noun = nouns[random.randint(0, len(nouns) - 1)]
     adjective = adjectives[random.randint(0, len(adjectives) - 1)]
 
     return noun.article + " " + adjective + " " + noun.noun
+
+
+dictionary_address = getenv(
+    "FANCIFY_DICTIONARY_ADDRESS", default="http://localhost:8080")
 
 
 def fetch_adjectives():
@@ -58,7 +64,7 @@ def fetch_nouns():
 
 
 # connect to dictionary service and fetch all adjectives and nouns
-# save them into a cache that gets cleared every x minutes
+# if we can't connect to the service, we just exit.
 print("Load lexicon into cache ...")
 adjectives = fetch_adjectives()
 if adjectives == None:
