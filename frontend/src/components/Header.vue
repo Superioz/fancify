@@ -1,6 +1,6 @@
 <template>
   <div id="header">
-    <img src="./assets/logo.png">
+    <img src="../assets/logo.png">
     <h1>Fancify</h1>
   </div>
 </template>
