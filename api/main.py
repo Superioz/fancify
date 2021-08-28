@@ -14,6 +14,9 @@ class Noun:
         self.noun = noun
         self.article = article
 
+    def __lt__(self, value):
+        return self.noun < value.noun
+
 
 def fancify_content(content, nouns, adjectives):
     """
@@ -71,12 +74,14 @@ if adjectives == None:
     print("Could not load any adjectives, exiting ..")
     exit(1)
 print(f"Loaded {len(adjectives)} adjectives")
+sorted(adjectives)
 
 nouns = fetch_nouns()
 if nouns == None:
     print("Could not load any nouns, exiting ..")
     exit(1)
 print(f"Loaded {len(nouns)} nouns")
+sorted(nouns)
 
 app = Flask("fancify-api")
 app.config['JSON_AS_ASCII'] = False
