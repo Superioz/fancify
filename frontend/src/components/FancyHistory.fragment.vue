@@ -9,6 +9,9 @@ export default {
         getHistory() {
             return this.$store.state.history.filter(entry => !!entry);
         },
+        getTimestamp(date) {
+            return (new Date(date)).toLocaleString();
+        },
     },
 }
 </script>
@@ -17,11 +20,11 @@ export default {
 
     <section id="fancy-history">
         <article v-for="entry in getHistory()" class="fancy-history" :key="entry.createdAt">
-            <label class="fancy-accent fancy-meta" v-text="entry.createdAt">25.09.2021 11:01</label>
+            <label class="fancy-accent fancy-meta" v-text="getTimestamp(entry.createdAt)" />
             <div style="align-items: center; display: flex; flex-wrap: wrap">
-                <div class="fancy-input" v-text="entry.input">Gentleman Archibald</div>
+                <div class="fancy-input" v-text="entry.input" />
                 <div class="fancy-arrow">→</div>
-                <div class="fancy-output" v-text="entry.output">der klassische Reiskocher</div>
+                <div class="fancy-output" v-text="entry.output" />
             </div>
         </article>
 
