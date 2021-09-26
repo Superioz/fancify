@@ -1,29 +1,31 @@
 <script>
 export default {
     name: "FancyHistory",
+    methods: {
+        clearHistory() {
+            console.log("clear");
+            this.$store.commit("clearHistory");
+        },
+        getHistory() {
+            return this.$store.state.history.filter(entry => !!entry);
+        },
+    },
 }
 </script>
 
 <template>
 
     <section id="fancy-history">
-        <article class="fancy-history">
-            <label class="fancy-accent fancy-meta">25.09.2021 11:01</label>
+        <article v-for="entry in getHistory()" class="fancy-history" :key="entry.createdAt">
+            <label class="fancy-accent fancy-meta" v-text="entry.createdAt">25.09.2021 11:01</label>
             <div style="align-items: center; display: flex; flex-wrap: wrap">
-                <div class="fancy-input">Gentleman Archibald</div>
+                <div class="fancy-input" v-text="entry.input">Gentleman Archibald</div>
                 <div class="fancy-arrow">→</div>
-                <div class="fancy-output">der klassische Reiskocher</div>
+                <div class="fancy-output" v-text="entry.output">der klassische Reiskocher</div>
             </div>
         </article>
 
-        <article class="fancy-history">
-            <label class="fancy-accent fancy-meta">26.09.2021 14:27</label>
-            <div style="align-items: center; display: flex; flex-wrap: wrap">
-                <div class="fancy-input">oRRUcuvc</div>
-                <div class="fancy-arrow">→</div>
-                <div class="fancy-output">der vorsintflutliche Verdauungstrakt</div>
-            </div>
-        </article>
+        <a @click="clearHistory()" class="fancy-button">Clear History</a>
     </section>
 
 </template>
@@ -31,7 +33,7 @@ export default {
 <style scoped>
 
     #fancy-history {
-        margin: 1em -1em;
+        margin: 1em -1em 0;
     }
 
     .fancy-arrow,
@@ -49,13 +51,22 @@ export default {
         margin: 0 .5em 4px;
     }
 
+    .fancy-button {
+        background-color: #D33A3A;
+        margin: 1em 1em 0;
+    }
+
+    .fancy-button:hover {
+        background-color: #9E1818;
+    }
+
     .fancy-history {
         background-color: #48B3D533;
         padding: 1em;
     }
 
     .fancy-history ~ .fancy-history {
-        margin-top: 1em;
+        margin-top: 1px;
     }
 
     .fancy-input {
@@ -79,8 +90,20 @@ export default {
     }
 
     @media screen and (min-width: 800px) {
+        #fancy-history {
+            margin: 1em -1em;
+        }
+
         .fancy-arrow {
             display: block;
+        }
+
+        .fancy-button {
+            margin: 1em;
+        }
+
+        .fancy-history ~ .fancy-history {
+            margin-top: 1em;
         }
 
         .fancy-input {
