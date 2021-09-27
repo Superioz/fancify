@@ -5,11 +5,18 @@ export default {
     name: "FancyInput",
     data() {
         return {
+            copied: false,
             input: "",
             output: "",
         };
     },
     methods: {
+        async copyToClipboard() {
+            await navigator.clipboard.writeText(this.output);
+            this.copied = true;
+
+            setTimeout(() => this.copied = false, 2000);
+        },
         async fancify() {
             if (!this.input.trim()) return;
 
@@ -37,6 +44,8 @@ export default {
         <label class="fancy-accent fancy-label">// Such fancy.</label>
 
         <input v-model="output" class="fancy-input" placeholder="Fancy stuff comes out here" readonly style="font-feature-settings: 'salt'" type="text">
+
+        <a @click="copyToClipboard()" class="fancy-button fancy-copy-button" :class="{ 'is-done': copied }" :disabled="!output" v-text="copied ? '✓' : 'Copy'" />
     </section>
 
 </template>
@@ -47,10 +56,25 @@ export default {
         background-color: #48B3D533;
         margin: 1em -1em;
         padding: 1em;
+        position: relative;
     }
 
     .fancy-button:hover {
         background-color: #065F7A;
+    }
+
+    .fancy-copy-button {
+        bottom: 12px;
+        margin: 0;
+        min-width: 60px;
+        padding: 8px 12px;
+        position: absolute;
+        right: 12px;
+        text-align: center;
+    }
+
+    .fancy-copy-button.is-done {
+        background-color: #23E279;
     }
 
     .fancy-input {
