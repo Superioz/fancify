@@ -12,26 +12,35 @@ export default {
             return this.$store.state.history.filter(entry => !!entry).length > 0;
         },
     },
-}
+};
 </script>
 
 <template>
+  <div id="app">
+    <div :class="{ 'fancy-center': !hasHistory() }">
+      <img
+        class="fancy-logo"
+        height="32"
+        src="./assets/logo.png"
+      >
 
-    <div id="app">
-        <div :class="{ 'fancy-center': !hasHistory() }">
-            <img class="fancy-logo" height="32" src="./assets/logo.png">
+      <div class="fancy-accent">
+        Fancify your sh*t here ↴
+      </div>
 
-            <div class="fancy-accent">Fancify your sh*t here ↴</div>
-
-            <fancy-input />
-        </div>
-
-        <template v-if="hasHistory()">
-            <div class="fancy-accent" style="margin-top: 4em">Your latest fancifies ↴</div>
-            <fancy-history />
-        </template>
+      <fancy-input />
     </div>
 
+    <template v-if="hasHistory()">
+      <div
+        class="fancy-accent"
+        style="margin-top: 4em"
+      >
+        Your latest fancifies ↴
+      </div>
+      <fancy-history />
+    </template>
+  </div>
 </template>
 
 <style>

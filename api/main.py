@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from os import getenv
+from flask_cors import CORS
 import sys
 import requests
 import random
@@ -90,6 +91,7 @@ limiter = Limiter(
     key_func=get_remote_address,
     default_limits=["5000 per hour"]
 )
+CORS(app)
 
 
 @app.route("/fancify", methods=["POST"])

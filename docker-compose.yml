@@ -24,5 +24,4 @@ services:
       SERVER_HOST: 0.0.0.0
       SERVER_PORT: 8090
       FANCIFY_DICTIONARY_ADDRESS: http://dictionary:8080
-    depends_on:
-      - dictionary
+    restart: always

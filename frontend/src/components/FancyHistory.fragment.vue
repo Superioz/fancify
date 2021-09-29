@@ -13,24 +13,40 @@ export default {
             return (new Date(date)).toLocaleString();
         },
     },
-}
+};
 </script>
 
 <template>
+  <section id="fancy-history">
+    <article
+      v-for="entry in getHistory()"
+      :key="entry.createdAt"
+      class="fancy-history"
+    >
+      <label
+        class="fancy-accent fancy-meta"
+        v-text="getTimestamp(entry.createdAt)"
+      />
+      <div style="align-items: center; display: flex; flex-wrap: wrap">
+        <div
+          class="fancy-input"
+          v-text="entry.input"
+        />
+        <div class="fancy-arrow">
+          →
+        </div>
+        <div
+          class="fancy-output"
+          v-text="entry.output"
+        />
+      </div>
+    </article>
 
-    <section id="fancy-history">
-        <article v-for="entry in getHistory()" class="fancy-history" :key="entry.createdAt">
-            <label class="fancy-accent fancy-meta" v-text="getTimestamp(entry.createdAt)" />
-            <div style="align-items: center; display: flex; flex-wrap: wrap">
-                <div class="fancy-input" v-text="entry.input" />
-                <div class="fancy-arrow">→</div>
-                <div class="fancy-output" v-text="entry.output" />
-            </div>
-        </article>
-
-        <a @click="clearHistory()" class="fancy-button">Clear History</a>
-    </section>
-
+    <a
+      class="fancy-button"
+      @click="clearHistory()"
+    >Clear History</a>
+  </section>
 </template>
 
 <style scoped>

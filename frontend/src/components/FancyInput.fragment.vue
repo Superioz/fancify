@@ -29,25 +29,47 @@ export default {
             this.input = this.output = "";
         },
     },
-}
+};
 </script>
 
 <template>
+  <section id="fancy-input">
+    <label class="fancy-accent fancy-label">// Very lame.</label>
 
-    <section id="fancy-input">
-        <label class="fancy-accent fancy-label">// Very lame.</label>
+    <input
+      v-model="input"
+      class="fancy-input"
+      placeholder="Boring text goes in here"
+      :readonly="!!output"
+      type="text"
+      @click="!!output && reset()"
+    >
 
-        <input @click="!!output && reset()" v-model="input" class="fancy-input" placeholder="Boring text goes in here" :readonly="!!output" type="text">
+    <a
+      class="fancy-button"
+      :disabled="!input.trim()"
+      @click="fancify()"
+    >Fancify</a>
 
-        <a @click="fancify()" class="fancy-button" :disabled="!input.trim()">Fancify</a>
+    <label class="fancy-accent fancy-label">// Such fancy.</label>
 
-        <label class="fancy-accent fancy-label">// Such fancy.</label>
+    <input
+      v-model="output"
+      class="fancy-input"
+      placeholder="Fancy stuff comes out here"
+      readonly
+      style="font-feature-settings: 'salt'"
+      type="text"
+    >
 
-        <input v-model="output" class="fancy-input" placeholder="Fancy stuff comes out here" readonly style="font-feature-settings: 'salt'" type="text">
-
-        <a @click="copyToClipboard()" class="fancy-button fancy-copy-button" :class="{ 'is-done': copied }" :disabled="!output" v-text="copied ? '✓' : 'Copy'" />
-    </section>
-
+    <a
+      class="fancy-button fancy-copy-button"
+      :class="{ 'is-done': copied }"
+      :disabled="!output"
+      @click="copyToClipboard()"
+      v-text="copied ? '✓' : 'Copy'"
+    />
+  </section>
 </template>
 
 <style scoped>
