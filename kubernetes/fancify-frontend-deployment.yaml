@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fancify-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fancify-frontend
+  template:
+    metadata:
+      labels:
+        app: fancify-frontend
+    spec:
+      containers:
+      - name: fancify-frontend
+        image: superioz/fancify-frontend:latest
+        ports:
+        - containerPort: 80
+        env:
+          - name: VUE_APP_API_ADDRESS
+            value: https://api.fancify.superioz.de

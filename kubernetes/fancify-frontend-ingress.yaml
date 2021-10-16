@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+  name: fancify
+spec:
+  rules:
+  - host: fancify.yourhost.de
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          serviceName: fancify-frontend
+          servicePort: 80
+      - pathType: Exact
+        path: /fancify
+        backend:
+          serviceName: fancify-api
+          servicePort: 8090
+  tls:
+  - hosts:
+    - fancify.yourhost.de
+    secretName: fancify-cert

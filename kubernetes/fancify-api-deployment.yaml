@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fancify-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fancify-api
+  template:
+    metadata:
+      labels:
+        app: fancify-api
+    spec:
+      containers:
+      - name: fancify-api
+        image: superioz/fancify-api:latest
+        ports:
+        - containerPort: 8090
+        env:
+          - name: FANCIFY_DICTIONARY_ADDRESS
+            value: http://fancify-dictionary:8080

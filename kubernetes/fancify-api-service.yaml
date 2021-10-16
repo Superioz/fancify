@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fancify-api
+spec:
+  selector:
+    app: fancify-api
+  ports:
+    - name: fancify-api
+      port: 8090

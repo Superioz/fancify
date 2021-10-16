@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fancify-dictionary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fancify-dictionary
+  template:
+    metadata:
+      labels:
+        app: fancify-dictionary
+    spec:
+      containers:
+      - name: fancify-dictionary
+        image: superioz/fancify-dictionary:latest
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/fancify/dictionary
+      volumes:
+        - name: config-volume
+          hostPath:
+            path: /etc/fancify/dictionary
+            type: DirectoryOrCreate
