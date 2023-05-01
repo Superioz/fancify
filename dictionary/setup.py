@@ -8,5 +8,5 @@ setup(
     version="0.1.0",
     description="Dictionary service for the Fancify application",
     long_description=long_description,
-    install_requires=["flask==1.1.2", "flask_limiter==1.2.1", "pyyaml==5.4.1"],
+    install_requires=["flask==2.3.2", "flask_limiter==1.2.1", "pyyaml==5.4.1"],
 )
