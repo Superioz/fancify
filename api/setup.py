@@ -9,7 +9,7 @@ setup(
     description="API backend for the Fancify application",
     long_description=long_description,
     install_requires=[
-        "flask==1.1.2",
+        "flask==2.3.2",
         "flask_limiter==1.2.1",
         "requests==2.23.0",
         "flask-cors==3.0.10"
