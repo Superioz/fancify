@@ -11,7 +11,7 @@ setup(
     install_requires=[
         "flask==1.1.2",
         "flask_limiter==1.2.1",
-        "requests==2.23.0",
+        "requests==2.31.0",
         "flask-cors==3.0.10"
     ],
 )
